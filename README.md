@@ -1,3 +1,18 @@
+# Enhancing Point Cloud Semantic Segmentation through Frequency-Aware Multimodal Fusion
+
+**Jun Yang<sup>1,2</sup> and Hengrui Mao<sup>2*</sup>**  
+<sup>1</sup> School of Electronic and Information Engineering, Lanzhou Jiaotong University, Lanzhou 730070, Gansu, China  
+<sup>2</sup> School of Automation and Electrical Engineering, Lanzhou Jiaotong University, Lanzhou 730070, Gansu, China  
+*Correspondence:* m951029609@163.com
+
+---
+
+## Manuscript note
+
+This repository contains code directly related to our manuscript, “Enhancing Point Cloud Semantic Segmentation through Frequency-Aware Multimodal Fusion,” currently submitted to *The Visual Computer*. If you find this work useful, please cite the related manuscript. This code release does **not** imply acceptance or endorsement by the journal.
+
+
+
 # 🚀 Installation
 
 ## Requirements
