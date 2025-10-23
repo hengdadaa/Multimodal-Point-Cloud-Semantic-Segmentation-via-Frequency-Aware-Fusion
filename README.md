@@ -79,13 +79,13 @@ python main.py \
   --gpu 0
   ```
 ### nuScenes
-Run multi-GPU training:
+Run  training:
 ```bash
 cd <root dir of this repo>
 python main.py \
   --log_dir 2DPASS_nusc \
   --config config/2DPASS-nuscenese.yaml \
-  --gpu 0 1 2 3
+  --gpu 0 
 ```
 ###Testing / Inference
 SemanticKITTI testing with test-time augmentation (TTA):
