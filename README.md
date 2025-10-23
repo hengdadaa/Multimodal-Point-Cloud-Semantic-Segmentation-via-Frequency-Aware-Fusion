@@ -1,4 +1,4 @@
-# Installation
+# 🚀 Installation
 
 ## Requirements
 - PyTorch >= 1.8
@@ -18,7 +18,7 @@
 
 
 
-# Data Preparation
+# 🚀 Data Preparation
 
 ## SemanticKITTI
 Please download the data from the SemanticKITTI official website, and additionally download the color image data (image_2) from the KITTI Odometry official website. Extract all the compressed files into the same directory (default ./dataset).
@@ -66,3 +66,6 @@ NuScenes:[[NuScenes_url](https://www.nuscenes.org/)]
     ├── maps/
     └── lidarseg/
 ```
+
+
+## 🚀 Train
