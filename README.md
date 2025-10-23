@@ -54,7 +54,7 @@ https://pan.baidu.com/s/1sdJA0PLg9l2Y5IuiXixN6A   Extraction Code: u9wr
 
 nuScenes
 
-请从 nuScenes 官网下载 Full dataset (v1.0)，并确保包含 lidarseg 标注包。将其解压至 ./dataset/nuscenes/。
+Please download the Full dataset  from the nuScenes official website and make sure to include the lidarseg annotation package. Extract it to ./dataset/nuscenes/.
 NuScenes:[[semkitti_url](https://www.nuscenes.org/)]
 ```
 ./dataset/
