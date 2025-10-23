@@ -25,9 +25,8 @@
 
 可选下载链接（如需可替换占位符为真实网址）：
 - SemanticKITTI: [Official][[semkitti_url](https://semantic-kitti.org/)]
-- KITTI Odometry color: [Official][通过网盘分享的文件：data_odometry_color.zip
-链接: https://pan.baidu.com/s/1sdJA0PLg9l2Y5IuiXixN6A 提取码: u9wr 
---来自百度网盘超级会员v6的分享]
+- KITTI Odometry color: [Official][data_odometry_color.zip
+https://pan.baidu.com/s/1sdJA0PLg9l2Y5IuiXixN6A password: u9wr ]
 
 期望的目录结构：
 ```text
