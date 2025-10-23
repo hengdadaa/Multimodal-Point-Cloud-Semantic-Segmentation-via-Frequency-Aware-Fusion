@@ -27,7 +27,7 @@ Please download the data from the SemanticKITTI official website, and additional
 - KITTI Odometry color:  data_odometry_color.zip
 https://pan.baidu.com/s/1sdJA0PLg9l2Y5IuiXixN6A   Extraction Code: u9wr 
 
-期望的目录结构：
+Expected directory structure：
 ```text
 ./dataset/
 └── SemanticKitti/
