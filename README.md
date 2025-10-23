@@ -69,3 +69,35 @@ NuScenes:[[NuScenes_url](https://www.nuscenes.org/)]
 
 
 # 🚀 Train
+### SemanticKITTI
+Run training:
+```bash
+cd <root dir of this repo>
+python main.py \
+  --log_dir 2DPASS_semkitti \
+  --config config/2DPASS-semantickitti.yaml \
+  --gpu 0
+  ```
+### nuScenes
+Run multi-GPU training:
+```bash
+cd <root dir of this repo>
+python main.py \
+  --log_dir 2DPASS_nusc \
+  --config config/2DPASS-nuscenese.yaml \
+  --gpu 0 1 2 3
+```
+###Testing / Inference
+SemanticKITTI testing with test-time augmentation (TTA):
+```bash
+cd <root dir of this repo>
+python main.py \
+  --config config/2DPASS-semantickitti.yaml \
+  --gpu 0 \
+  --test \
+  --num_vote 12 \
+  --checkpoint <path-to-pytorch-checkpoint>
+```
+--num_vote controls the number of test-time views.
+Default is 12 (tested on Tesla V100). If your GPU memory is smaller, reduce this value.
+Set --num_vote=1 to disable TTA (typically ~2% performance drop).
