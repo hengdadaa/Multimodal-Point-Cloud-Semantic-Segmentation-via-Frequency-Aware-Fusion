@@ -95,9 +95,9 @@ python main.py \
   --config config/2DPASS-semantickitti.yaml \
   --gpu 0 \
   --test \
-  --num_vote 12 \
+  --num_vote  \
   --checkpoint <path-to-pytorch-checkpoint>
 ```
 --num_vote controls the number of test-time views.
-Default is 12 (tested on Tesla V100). If your GPU memory is smaller, reduce this value.
+If your GPU memory is smaller, reduce this value.
 Set --num_vote=1 to disable TTA (typically ~2% performance drop).
