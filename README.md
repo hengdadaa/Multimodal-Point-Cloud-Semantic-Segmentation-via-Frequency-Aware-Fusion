@@ -101,3 +101,8 @@ python main.py \
 --num_vote controls the number of test-time views.
 If your GPU memory is smaller, reduce this value.
 Set --num_vote=1 to disable TTA (typically ~2% performance drop).
+
+
+# 📬 Contact
+Should you have any questions or suggestions related to this project, please do not hesitate to reach out to us at m951029609@163.com
+.
