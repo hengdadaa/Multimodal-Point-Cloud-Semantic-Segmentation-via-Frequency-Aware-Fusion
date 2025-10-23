@@ -87,7 +87,7 @@ python main.py \
   --config config/2DPASS-nuscenese.yaml \
   --gpu 0 
 ```
-###Testing / Inference
+### Testing / Inference
 SemanticKITTI testing with test-time augmentation (TTA):
 ```bash
 cd <root dir of this repo>
