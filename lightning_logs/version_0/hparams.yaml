@@ -1,0 +1,186 @@
+config: !!python/object/new:easydict.EasyDict
+  dictitems:
+    baseline_only: false
+    checkpoint: ./logs/SemanticKITTI/2DPASS_semkitti/version_36/checkpoints/last.ckpt
+    config_path: config/2DPASS-semantickitti.yaml
+    dataset_params: &id011 !!python/object/new:easydict.EasyDict
+      dictitems:
+        bottom_crop: &id001
+        - 480
+        - 320
+        collate_type: collate_fn_default
+        color_jitter: &id002
+        - 0.4
+        - 0.4
+        - 0.4
+        dataset_type: point_image_dataset_semkitti
+        flip2d: 0.5
+        ignore_label: 0
+        image_normalizer: &id003
+        - - 0.485
+          - 0.456
+          - 0.406
+        - - 0.229
+          - 0.224
+          - 0.225
+        label_mapping: ./config/label_mapping/semantic-kitti.yaml
+        max_volume_space: &id004
+        - 50
+        - 50
+        - 2
+        min_volume_space: &id005
+        - -50
+        - -50
+        - -4
+        pc_dataset_type: SemanticKITTI
+        seg_labelweights: &id006
+        - 0
+        - 55437630
+        - 320797
+        - 541736
+        - 2578735
+        - 3274484
+        - 552662
+        - 184064
+        - 78858
+        - 240942562
+        - 17294618
+        - 170599734
+        - 6369672
+        - 230413074
+        - 101130274
+        - 476491114
+        - 9833174
+        - 129609852
+        - 4506626
+        - 1168181
+        train_data_loader: &id007 !!python/object/new:easydict.EasyDict
+          dictitems:
+            batch_size: 8
+            data_path: ./dataset/SemanticKitti/dataset/sequences/
+            dropout_aug: true
+            flip_aug: true
+            num_workers: 8
+            rotate_aug: true
+            scale_aug: true
+            shuffle: true
+            transform_aug: true
+          state:
+            batch_size: 8
+            data_path: ./dataset/SemanticKitti/dataset/sequences/
+            dropout_aug: true
+            flip_aug: true
+            num_workers: 8
+            rotate_aug: true
+            scale_aug: true
+            shuffle: true
+            transform_aug: true
+        training_size: 19132
+        val_data_loader: &id008 !!python/object/new:easydict.EasyDict
+          dictitems:
+            batch_size: 10
+            data_path: ./dataset/SemanticKitti/dataset/sequences/
+            dropout_aug: false
+            flip_aug: false
+            num_workers: 8
+            rotate_aug: true
+            scale_aug: false
+            shuffle: false
+            transform_aug: true
+          state:
+            batch_size: 10
+            data_path: ./dataset/SemanticKitti/dataset/sequences/
+            dropout_aug: false
+            flip_aug: false
+            num_workers: 8
+            rotate_aug: true
+            scale_aug: false
+            shuffle: false
+            transform_aug: true
+      state:
+        bottom_crop: *id001
+        collate_type: collate_fn_default
+        color_jitter: *id002
+        dataset_type: point_image_dataset_semkitti
+        flip2d: 0.5
+        ignore_label: 0
+        image_normalizer: *id003
+        label_mapping: ./config/label_mapping/semantic-kitti.yaml
+        max_volume_space: *id004
+        min_volume_space: *id005
+        pc_dataset_type: SemanticKITTI
+        seg_labelweights: *id006
+        train_data_loader: *id007
+        training_size: 19132
+        val_data_loader: *id008
+    debug: false
+    format_version: 1
+    gpu: &id012
+    - 0
+    model_params: &id013 !!python/object/new:easydict.EasyDict
+      dictitems:
+        backbone_2d: resnet34
+        hiden_size: 64
+        input_dims: 4
+        model_architecture: arch_2dpass
+        num_classes: 20
+        pretrained2d: false
+        scale_list: &id009
+        - 2
+        - 4
+        - 8
+        - 16
+        spatial_shape: &id010
+        - 1000
+        - 1000
+        - 60
+      state:
+        backbone_2d: resnet34
+        hiden_size: 64
+        input_dims: 4
+        model_architecture: arch_2dpass
+        num_classes: 20
+        pretrained2d: false
+        scale_list: *id009
+        spatial_shape: *id010
+    num_vote: 10
+    save_prediction: false
+    seed: 0
+    submit_to_server: false
+    test: true
+    train_params: &id014 !!python/object/new:easydict.EasyDict
+      dictitems:
+        lambda_seg2d: 1
+        lambda_xm: 0.05
+        learning_rate: 0.24
+        lr_scheduler: CosineAnnealingWarmRestarts
+        max_num_epochs: 64
+        momentum: 0.9
+        nesterov: true
+        optimizer: SGD
+        weight_decay: 0.0001
+      state:
+        lambda_seg2d: 1
+        lambda_xm: 0.05
+        learning_rate: 0.24
+        lr_scheduler: CosineAnnealingWarmRestarts
+        max_num_epochs: 64
+        momentum: 0.9
+        nesterov: true
+        optimizer: SGD
+        weight_decay: 0.0001
+  state:
+    baseline_only: false
+    checkpoint: ./logs/SemanticKITTI/2DPASS_semkitti/version_36/checkpoints/last.ckpt
+    config_path: config/2DPASS-semantickitti.yaml
+    dataset_params: *id011
+    debug: false
+    format_version: 1
+    gpu: *id012
+    model_params: *id013
+    num_vote: 10
+    save_prediction: false
+    seed: 0
+    submit_to_server: false
+    test: true
+    train_params: *id014
