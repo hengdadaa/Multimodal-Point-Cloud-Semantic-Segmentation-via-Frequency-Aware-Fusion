@@ -11,62 +11,27 @@ from network.basic_block import ResNetFCN
 from network.fam import FAM
 
 
-#######################
-class DownUpSample(nn.Module):
-    def __init__(self, in_channels, out_channels):
-        super(DownUpSample, self).__init__()
-        self.reduce_conv = nn.Conv1d(in_channels, out_channels, kernel_size=16, stride=16, padding=0)
-        # 说白了 就是改空间维度 不是通道数
-        self.restore_conv = nn.ConvTranspose1d(out_channels, in_channels, kernel_size=16, stride=16, padding=0)
 
-    def forward(self, x, y):
-
-        reduced_x = self.reduce_conv(x)
-        # 输入张量 x 进行下采样
-        reduced_y = self.reduce_conv(y)
-        # print(f"缩小: {reduced_x.shape}")
-
-        _, num_patches, dim = reduced_x.shape
-
-        # 引用agent模块
-        feature_dim = dim
-        N = num_patches
-
-        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-        pseudo_valid_feas_f = FAM(N=N, feature_dim=feature_dim).to(device)(reduced_x, reduced_y)
-        restored_x = self.restore_conv(pseudo_valid_feas_f)
-        # print(f"还原: {restored_x.shape}")
-
-        # 如果 restored_x 的尺寸小于原始尺寸，填充它
-        if restored_x.shape[2] < x.shape[2]:
-            pad_size = x.shape[2] - restored_x.shape[2]
-            restored_x = nn.functional.pad(restored_x, (0, pad_size))  # 如果不够原始尺寸 肯定填0
-        # 如果 restored_x 的尺寸大于原始尺寸，截断它
-        elif restored_x.shape[2] > x.shape[2]:
-            restored_x = restored_x[:, :, :x.shape[2]]  # 如果比原始尺寸大 截断他
-
-        return restored_x
-    #############################
 
 
 class Attention(nn.Module):
     def __init__(self, channels, reduction=16):
         super(Attention, self).__init__()
         self.pseudo_in, self.valid_in = channels
-        # 伪输入通道和有效通道得个数 在semantickitti数据集 64 在 nuscenes 是256
-        middle = self.valid_in  # 中间通道数
+       
+        middle = self.valid_in  
 
-        # Define fully connected layers （fc 会计算量增加 效果会好）
-        self.fc1 = nn.Linear(self.pseudo_in, middle)  # 两行分别将输入通道映射到中间通道数
+        
+        self.fc1 = nn.Linear(self.pseudo_in, middle)  
         self.fc2 = nn.Linear(self.valid_in, middle)
-        self.fc3 = nn.Linear(2 * middle, 2)  # 将两个中间通道映射到2个输出
+        self.fc3 = nn.Linear(2 * middle, 2)  
 
         # Define convolutional layers
         self.conv1 = nn.Sequential(
             nn.Conv1d(self.pseudo_in, self.valid_in, 1),
             nn.BatchNorm1d(self.valid_in),
             nn.ReLU()
-        )  # 将伪输入通道通过 1x1 卷积转换为有效输入通道，并进行批量归一化和ReLU激活。
+        ) 
         self.conv2 = nn.Sequential(
             nn.Conv1d(self.valid_in, self.valid_in, 1),
             nn.BatchNorm1d(self.valid_in),
@@ -139,7 +104,7 @@ class Attention(nn.Module):
         # pts_feat = AgentAttention(dim=dim, num_patches=num_patches)(pts_feat, H, W)
         # print(f"Restored shape: {valid_features_att.shape}")
 
-        # 恢复原始维度
+        #
         # valid_features_att = self.restore_conv(valid_features_att)
         # print(f"Restored shape: {valid_features_att.shape}")
         ########2
@@ -154,7 +119,7 @@ class Attention(nn.Module):
         #         #pts_feat = AgentAttention(dim=dim, num_patches=num_patches)(pts_feat, H, W)
         #         print(f"Restored shape: {pseudo_features_att.shape}")
 
-        #             # 恢复原始维度
+        #     
         #         pseudo_features_att = self.restore_conv(pseudo_features_att)
         #         print(f"Restored shape: {pseudo_features_att.shape}")
 
@@ -264,7 +229,7 @@ class xModalKD(nn.Module):
             pts_label_full = self.voxelize_labels(data_dict['labels'], data_dict['layer_{}'.format(idx)]['full_coors'])
             pts_feat = self.p2img_mapping(pts_feat[coors_inv], point2img_index, batch_idx)  # 这个就是另一个模态
             pts_pred = self.p2img_mapping(pts_pred_full[coors_inv], point2img_index, batch_idx)
-            # 把三维的预测结果也转成二维 就是为了kl散度
+            # 
 
             #             print('111111111111111', pts_feat.shape)
             #             # print('222222222222222',pts_pred.shape)
@@ -278,7 +243,7 @@ class xModalKD(nn.Module):
             #             pts_feat = AgentAttention(dim=dim, num_patches=num_patches)(pts_feat, H, W)
             #             print(f"Restored shape: {pts_feat.shape}")
 
-            #             # 恢复原始维度
+            #           
             #             pseudo_features_restored = self.restore_conv(pseudo_features_reduced)
             #             print(f"Restored shape: {pseudo_features_restored.shape}")
 
@@ -307,6 +272,41 @@ class xModalKD(nn.Module):
         data_dict['loss'] += loss
 
         return data_dict
+
+
+class DownUpSample(nn.Module):
+    def __init__(self, in_channels, out_channels):
+        super(DownUpSample, self).__init__()
+        self.reduce_conv = nn.Conv1d(in_channels, out_channels, kernel_size=16, stride=16, padding=0)
+        
+        self.restore_conv = nn.ConvTranspose1d(out_channels, in_channels, kernel_size=16, stride=16, padding=0)
+
+    def forward(self, x, y):
+
+        reduced_x = self.reduce_conv(x)
+       
+        reduced_y = self.reduce_conv(y)
+        
+
+        _, num_patches, dim = reduced_x.shape
+
+
+        feature_dim = dim
+        N = num_patches
+
+        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        pseudo_valid_feas_f = FAM(N=N, feature_dim=feature_dim).to(device)(reduced_x, reduced_y)
+        restored_x = self.restore_conv(pseudo_valid_feas_f)
+
+        if restored_x.shape[2] < x.shape[2]:
+            pad_size = x.shape[2] - restored_x.shape[2]
+            restored_x = nn.functional.pad(restored_x, (0, pad_size))
+
+        elif restored_x.shape[2] > x.shape[2]:
+            restored_x = restored_x[:, :, :x.shape[2]]  
+
+        return restored_x
+
 
 
 class get_model(LightningBaseModel):
