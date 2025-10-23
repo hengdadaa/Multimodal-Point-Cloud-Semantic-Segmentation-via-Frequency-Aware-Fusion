@@ -24,8 +24,10 @@
 请从 SemanticKITTI 官网下载数据，并**另外**从 KITTI Odometry 官网下载彩色图像数据（image_2）。将所有压缩包解压到同一个目录（默认 `./dataset`）。
 
 可选下载链接（如需可替换占位符为真实网址）：
-- SemanticKITTI: [Official][semkitti_url]
-- KITTI Odometry color: [Official][kitti_odom_url]
+- SemanticKITTI: [Official][[semkitti_url](https://semantic-kitti.org/)]
+- KITTI Odometry color: [Official][通过网盘分享的文件：data_odometry_color.zip
+链接: https://pan.baidu.com/s/1sdJA0PLg9l2Y5IuiXixN6A 提取码: u9wr 
+--来自百度网盘超级会员v6的分享]
 
 期望的目录结构：
 ```text
