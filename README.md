@@ -8,7 +8,7 @@
 
 ## Manuscript note
 
-This repository contains code directly related to our manuscript, “Enhancing Point Cloud Semantic Segmentation through Frequency-Aware Multimodal Fusion,” currently submitted to *The Visual Computer*. If you find this work useful, please cite the related manuscript. This code release does **not** imply acceptance or endorsement by the journal.
+This repository contains code directly related to our manuscript, “Enhancing Point Cloud Semantic Segmentation through Frequency-Aware Multimodal Fusion,” currently submitted to *The Visual Computer*. 
 
 
 
