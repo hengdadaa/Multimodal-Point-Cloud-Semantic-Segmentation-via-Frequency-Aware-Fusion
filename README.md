@@ -21,11 +21,10 @@
 # Data Preparation
 
 ## SemanticKITTI
-请从 SemanticKITTI 官网下载数据，并**另外**从 KITTI Odometry 官网下载彩色图像数据（image_2）。将所有压缩包解压到同一个目录（默认 `./dataset`）。
+Please download the data from the SemanticKITTI official website, and additionally download the color image data (image_2) from the KITTI Odometry official website. Extract all the compressed files into the same directory (default ./dataset).
 
-可选下载链接（如需可替换占位符为真实网址）：
-- SemanticKITTI: [Official][[semkitti_url](https://semantic-kitti.org/)]
-- KITTI Odometry color: [Official] data_odometry_color.zip
+- SemanticKITTI: [[semkitti_url](https://semantic-kitti.org/)]
+- KITTI Odometry color:  data_odometry_color.zip
 https://pan.baidu.com/s/1sdJA0PLg9l2Y5IuiXixN6A   Extraction Code: u9wr 
 
 期望的目录结构：
@@ -51,8 +50,13 @@ https://pan.baidu.com/s/1sdJA0PLg9l2Y5IuiXixN6A   Extraction Code: u9wr
         ├── 11/   # 11-21 for testing
         └── 21/
             └── ...
+```
 
+nuScenes
 
+请从 nuScenes 官网下载 Full dataset (v1.0)，并确保包含 lidarseg 标注包。将其解压至 ./dataset/nuscenes/。
+NuScenes:[[semkitti_url](https://www.nuscenes.org/)]
+```
 ./dataset/
 └── nuscenes/
     ├── v1.0-trainval/
@@ -61,4 +65,4 @@ https://pan.baidu.com/s/1sdJA0PLg9l2Y5IuiXixN6A   Extraction Code: u9wr
     ├── sweeps/
     ├── maps/
     └── lidarseg/
-
+```
